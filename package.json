@@ -1,0 +1,24 @@
+{
+  "name": "webnmap",
+  "version": "1.0.0",
+  "description": "a web interface to easily scan your network",
+  "main": "app.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tpez0/webnmap.git"
+  },
+  "keywords": [
+    "nmap"
+  ],
+  "author": "Tommaso Pezzi",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/tpez0/webnmap/issues"
+  },
+  "homepage": "https://github.com/tpez0/webnmap#readme"
+}

@@ -1,0 +1,188 @@
+<!DOCTYPE HTML>
+<!--
+	Dimension by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<!--
+	Edited for WEBNMAP
+	@tpez0
+	Free for personal use under the GPLv3 license
+-->
+<html>
+
+<head>
+	<title>WebnMap</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	
+</head>
+
+<body class="is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<div class="content">
+				<div class="inner">
+					<h1>WebnMap</h1>
+					<p>Easily scan your network and find open ports</p>
+				</div>
+			</div>
+			<nav>
+				<ul>
+					<li><a href="#scan">Scan</a></li>
+					<li><a href="#results">Results</a></li>
+				</ul>
+			</nav>
+			<nav>
+				<ul>
+					<li><a href="dropdb">Drop Database</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<!-- Main -->
+		<div id="main">
+
+			<!-- Scan IP -->
+			<article id="scan">
+				<h2 class="major">Scan IP Address</h2>
+				<form method="post" action="#">
+					<div class="fields">
+						<div class="field">
+							<label for="ipToScan">Insert an IP Address to scan</label>
+							<textarea name="ipToScan" id="ipToScan" rows="1"></textarea>
+						</div>
+					</div>
+
+					<div class="field half">
+						<input type="checkbox" id="standardport" name="standardport">
+						<label for="standardport">Scan only Standard Ports (0-1023)</label>
+					</div>
+
+					<div class="field half">
+						<input type="checkbox" id="vulnon" name="vulnon">
+						<label for="vulnon">Scan for vulnerabilities</label>
+					</div>
+
+					<br />
+					<ul class="actions">
+						<li><input type="submit" value="Scan IP Address" class="primary" /></li>
+						<li><input type="reset" value="Reset" /></li>
+					</ul>
+
+				</form>
+			</article>
+
+			<!-- Results -->
+			<article id="results">
+				<% if (isScanning == true) { var scanInProg = "Network scan in progress" } else { scanInProg = "" } %>
+				<h2 class="major">Results</h2>
+				<% if (scanInProg) { %>
+					<h3 class="blinking"><%= scanInProg %></h3>
+					<h5>Scan started at <%= scanStartedAt %>. Please reload in a while</h5>
+					<% } %>
+				<div class="table-wrapper">
+					<table id="ResultTable">
+						<thead>
+							<tr>
+								<th class="th-id">#</th>
+								<th class="th-ip">IP Address</th>
+								<th class="th-hostname">Hostname</th>
+								<th class="th-mac">MAC Address</th>
+
+								<th class="th-ports">Open Ports and Vulnerabilities</th>
+								<th class="th-os">OS</th>
+								<th class="th-vendor">Vendor</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% for (var i = 0; i < host.length; i++) { %>
+							<tr>
+								<th class="th-id-res"><%= i %></th>
+								<td class="td-res"><%= host[i].ip %></td>
+								<% if (host[i].hostname) { %>
+								<td class="td-res"><%= host[i].hostname %></td>
+									<% } else { %>
+									<td class="td-res">n/a</td>
+										<% } %>
+								<% if (host[i].mac) { %>
+								<td class="td-res"><%= host[i].mac %></td>
+									<% } else { %>
+									<td class="td-res">n/a</td>
+										<% } %>
+								<td>
+									<div>
+									<table>
+										<% if (host[i].openVulns) { %>
+											<% for (var j = 0; j < host[i].openVulns.length; j++) { %>
+											<tr>
+												<th class="th-openPorts"><%= host[i].openPorts[j] %></th>
+												<td><div class="div-vList"><%= host[i].openVulns[j] %></div></td>
+											</tr>
+											<% } %>
+											<% } else { %>
+												<tr>
+													<th class="th-openPorts">n/a</th>
+													<td><div class="div-vList">n/a</div></td>
+												</tr>
+													<% } %>
+									</table>
+									</div>
+								</td>
+								<% if (host[i].osNmap) { %>
+								<td class="td-res"><%= host[i].osNmap %></td>
+								<% } else { %>
+									<td class="td-res">n/a</td>
+										<% } %>
+										<% if (host[i].vendor) { %>
+								<td class="td-res"><%= host[i].vendor %></td>
+								<% } else { %>
+									<td class="td-res">n/a</td>
+										<% } %>
+							</tr>
+							<% } %>
+						</tbody>
+
+					</table>
+					<ul class="actions">
+						<li><button onClick="window.location.reload();">Reload</button></li>
+						<li><button onClick="window.location.href='dropdb'" class="dropBtn">Drop Database</button></li>	
+					</ul>
+			</article>
+
+
+		</div>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<p class="copyright">&copy; 2020 @tpez0 | GPLv3</p>
+			<p class="copyright">Design: <a href="https://html5up.net">HTML5 UP</a></p>
+		</footer>
+
+	</div>
+
+	<!-- BG -->
+	<div id="bg"></div>
+
+	<!-- Scripts -->
+
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/script.js"></script>
+
+	<script>
+		window.onload = ParseLINEFEED();
+	</script>
+
+</body>
+
+</html>

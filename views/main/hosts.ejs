@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+        <div class="table-responsive text-nowrap">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">IP Address</th>
+                        <th scope="col">Hostname</th>
+                        <th scope="col">MAC Address</th>
+                        <th scope="col">Open Ports</th>
+                        <th scope="col">OS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (var i = 0; i < host.length; i++) { %>
+                    <tr>
+                        <th scope="row"><%= i %></th>
+                        <td><%= host[i].ip %></td>
+                        <% if (host[i].hostname == "null" || host[i].hostname == "") { %>
+                        <td>n/a</td>
+                        <% } else { %>
+                        <td><%= host[i].hostname %></td>
+                        <% } %>
+
+                        <% if (host[i].mac == "null" || host[i].mac == "") { %>
+                        <td>n/a</td>
+                        <% } else { %>
+                        <td><%= host[i].mac %></td>
+                        <% } %>
+
+
+
+                        <% if (host[i].openPorts == "null" || host[i].openPorts == "") { %>
+                        <td>n/a</td>
+                        <% } else { %>
+                        <td><%= host[i].openPorts %></td>
+                        <% } %>
+
+                        <% if (host[i].osNmap == "null" || host[i].osNmap == "") { %>
+                        <td>n/a</td>
+                        <% } else { %>
+                        <td><%= host[i].osNmap %></td>
+                        <% } %>
+
+                        <% if (host[i].vendor == "null" || host[i].vendor == "") { %>
+                        <td>n/a</td>
+                        <% } else { %>
+                        <td><%= host[i].vendor %></td>
+                        <% } %>
+
+
+                        
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+
+        </div>
+
+</body>
+
+</html>
