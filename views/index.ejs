@@ -92,6 +92,7 @@
 						<thead>
 							<tr>
 								<th class="th-id">#</th>
+								<th class="tdToSort">tdToSort</th>
 								<th class="th-ip">IP Address</th>
 								<th class="th-hostname">Hostname</th>
 								<th class="th-mac">MAC Address</th>
@@ -105,6 +106,9 @@
 							<% for (var i = 0; i < host.length; i++) { %>
 							<tr>
 								<th class="th-id-res"><%= i %></th>
+								<% var IPtoSort = host[i].ip; %>
+								<% var IPtoSort = IPtoSort.split(".").join("") %>
+								<td class="tdToSort"><%= IPtoSort %></td>
 								<td class="td-res"><%= host[i].ip %></td>
 								<% if (host[i].hostname) { %>
 								<td class="td-res"><%= host[i].hostname %></td>
@@ -123,7 +127,31 @@
 											<% for (var j = 0; j < host[i].openVulns.length; j++) { %>
 											<tr>
 												<th class="th-openPorts"><%= host[i].openPorts[j] %></th>
-												<td><div class="div-vList"><%= host[i].openVulns[j] %></div></td>
+												<td class="th-openPorts"><%= host[i].openService[j] %></td>
+												<td>
+													<table>
+													<% if (host[i].openVulns[j]) { %>
+													<% for (var k = 0; k < host[i].openVulns[j].length; k++) { %>
+													<tr>
+														
+															<td class="td-vList">
+																<div class="div-vList"><%= host[i].openVulns[j][k] %> 
+																	<a href="https://vulners.com/cve/<%= host[i].openVulns[j][k] %>" target="_blank" class="cveicon" title="Open CVE details"><img src="images/s_cve.png"></a>
+																</div>
+															</td>
+														
+													</tr>
+													<% } %>
+													<% } else { %>
+														<tr>
+														
+															<td class="td-vList"><div class="div-vList">No known vulnerabilities were found</div></td>
+														
+													</tr>
+															<% } %>
+													</table>
+												</td>
+								
 											</tr>
 											<% } %>
 											<% } else { %>
@@ -180,7 +208,7 @@
 	<script src="assets/js/script.js"></script>
 
 	<script>
-		window.onload = ParseLINEFEED();
+		window.onload = sortIPs();
 	</script>
 
 </body>

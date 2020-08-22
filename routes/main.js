@@ -112,13 +112,18 @@ router.post('/', function (req, res, next) {
             } else {
                 host.openPorts[0] = "0";
             }
+
+
             if (Results[j].openPorts != null) {
                 for (i = 0; i < Results[j].openPorts.length; i++) {
                     host.openVulns[i] = Results[j].openPorts[i].vulners;
-                    // console.log(host.openVulns[i]);
+                    host.openService[i] = Results[j].openPorts[i].service;
+                    //console.log(host.openService[i]);
+                    //console.log(host.openVulns[i]);
                 }
             } else {
                 host.openVulns[0] = "n/a";
+                host.openService[0] = "n/a";
             }
             host.osNmap = Results[j].osNmap;
             host.vendor = Results[j].vendor;

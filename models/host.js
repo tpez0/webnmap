@@ -6,7 +6,8 @@ var hostSchema = new Schema({
     ip: String,
     mac: String,
     openPorts: Array , "default" : [],
-    openVulns: Array , "default" : [], 
+    openVulns: Array , "default" : [],
+    openService: Array , "default" : [],
     osNmap: String,
     vendor: String
 })

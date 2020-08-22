@@ -1,9 +1,11 @@
 {
   "name": "webnmap",
-  "version": "1.0.0",
-  "description": "a web interface to easily scan your network",
+  "version": "1.0.1",
+  "description": "Scan your network easily from a web app",
   "main": "app.js",
-  "dependencies": {},
+  "dependencies": {
+    "node-nmap-vulners": "^1.0.1"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
