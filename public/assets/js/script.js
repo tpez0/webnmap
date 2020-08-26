@@ -31,4 +31,4 @@ function sortIPs() {
       switching = true;
     }
   }
-    }
+}

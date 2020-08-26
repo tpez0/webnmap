@@ -9,7 +9,6 @@ var scanStartedAt = "";
 /* **************** GET ***************** */
 // GET root
 router.get('/', function (req, res, next) {
-
     Host
         .find({})
         .exec(function (err, hosts) {
@@ -24,24 +23,7 @@ router.get('/', function (req, res, next) {
         })
 })
 
-// GET /#scan
-router.get('/#scan', function (req, res, next) {
-
-    Host
-        .find({})
-        .exec(function (err, hosts) {
-            Host.countDocuments().exec(function (err, count) {
-                if (err) return next(err)
-                res.render('index', {
-                    host: hosts
-                })
-            })
-        })
-})
-
-// GET /#results
 router.get('/#results', function (req, res, next) {
-
     Host
         .find({})
         .exec(function (err, hosts) {
@@ -50,6 +32,7 @@ router.get('/#results', function (req, res, next) {
                 res.render('index', {
                     host: hosts,
                     isScanning: isScanning,
+                    scanStartedAt: scanStartedAt,
                 })
             })
         })
@@ -63,7 +46,6 @@ router.get('/dropdb', function (req, res, next) {
     })
     res.redirect('/#results');
 })
-
 
 /* **************** POST ***************** */
 // POST IP to nmap scan
@@ -112,8 +94,6 @@ router.post('/', function (req, res, next) {
             } else {
                 host.openPorts[0] = "0";
             }
-
-
             if (Results[j].openPorts != null) {
                 for (i = 0; i < Results[j].openPorts.length; i++) {
                     host.openVulns[i] = Results[j].openPorts[i].vulners;

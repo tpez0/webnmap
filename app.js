@@ -4,7 +4,7 @@ var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
 var mainRoutes = require('./routes/main')
 
-mongoose.connect('mongodb+srv://', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect('mongodb+srv:', {useNewUrlParser: true, useUnifiedTopology: true})
 
 var app = express()
 
