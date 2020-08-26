@@ -180,6 +180,30 @@
 					</ul>
 			</article>
 
+			<article id="wiki">
+				<h2 class="major">WEBNMAP Wiki</h2>
+				<h3>Why WEBNMAP</h3>
+				<p>WEBNMAP makes the use of nmap easy even if you're unfamiliar with the tool, moving from the classic shell to a more intuitive web interface.</p>
+				<div><img src="images/webnmap.gif" class="wiki-img"></div>
+				<p></p>
+				<h3>How to install WEBNMAP</h3>
+				<p>To use WEBNMAP you need to follow the following steps:</p>
+				<ol>
+					<li>Install nodejs and npm</li>
+					<li>Install node modules (shell: npm install express ejs mongoose body-parser node-nmap-vulners)</li>
+					<li>Install nmap</li>
+					<li>Install vulners.nse script (github: https://github.com/vulnersCom/nmap-vulners )</li>
+					<li>Edit app.js and connect to your MongoDB</li>
+					<li>Launch your node.js app (shell: node app.js)</li>
+				  </ol>
+				  <p></p>
+				  <h3>How to use WEBNMAP</h3>
+				  <p>You can scan by entering an IP or an IP range and selecting options to reduce the number of ports and to look for vulnerabilities.<br />
+					You can also insert a custom parameter directly in the text field (e.g " -p80 " to limit the scan to port 80 only).</p>
+				  <p>Clicking on "Scan IP Address" the app will scan and redirect you to the results page. Clicking on the CVE icon will redirect you to its in-depth page.</p>
+				  <div><img src="images/howtoscan.gif" class="wiki-img"></div>
+			</article>
+
 
 		</div>
 

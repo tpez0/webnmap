@@ -1932,3 +1932,13 @@ body.is-preload #footer {
 	display: inline-block;
 	margin-left: 5%;
 }
+
+.wiki-img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 5px;
+	max-height: 500px;
+	max-width: 90%;
+
+}
